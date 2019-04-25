@@ -2,6 +2,8 @@ const Account = require('../models/account');
 
 class AccountController {
   static findAccounts(req, res) {
+    console.log(req.params.accountNumber);
+    
     Account.findOne({ accountNumber: req.params.accountNumber })
      .populate('user')
      .then(account => {
@@ -13,20 +15,25 @@ class AccountController {
   }
 
   static newAccount(req, res) {
+    console.log(req.body, '???ini dr na');
+    
     let acc = null;
 
     if (req.body.hasOwnProperty('balance')) {
-      acc = {
-        balance: req.body.balance,
-        userId: req.user._id
-      }
-    } else {
-      acc = {
-        userId: req.user._id
-      }
+    //   acc = {
+    //     balance: req.body.balance,
+    //     userId: req.user._id
+    //   }
+    // } else {
+    //   acc = {
+    //     userId: req.user._id
+    //   }
     }
 
-    Account.create(acc)
+    Account.create({
+      balance : req.body.balance,
+      userId : req.user._id
+    })
      .then(account => {
        res.status(201).json(account);
      })

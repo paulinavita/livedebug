@@ -45,6 +45,8 @@ const userSchema = new Schema({
 })
 
 userSchema.pre('save', function(next) {
+  console.log('masuk pre save');
+  
   this.password = register.hashPassword(this.password);
   this.verificationCode = register.generateNum(6);
   next()

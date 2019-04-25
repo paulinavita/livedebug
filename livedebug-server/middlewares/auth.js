@@ -5,9 +5,14 @@ const Transaction = require('../models/transaction');
 
 module.exports = {
   authentication: function(req, res, next) {
+
+    console.log('trasaction masuk auth//?');
+    
     let token = req.header.token;
 
     if (token) {
+      console.log('punya', token);
+      
       res.status(401).json({ error: 'You must login to access this endpoint' });
     } else {
       let decoded = jwt.verify(token);
@@ -16,7 +21,11 @@ module.exports = {
          email: decoded.email
        })
        .then(user => {
+         console.log('masuk findone');
+         
          if(user) {
+           console.log('ada user', user, '/////////');
+           
            req.user = user;
            next();
          } else {

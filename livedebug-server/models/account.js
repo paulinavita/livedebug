@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+console.log('dimodel account');
 
 const accountSchema = new Schema({
   accountNumber: {
@@ -12,11 +13,12 @@ const accountSchema = new Schema({
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'User'
   }
 })
 
 accountSchema.pre('save', function(next) {
+  
   this.accountNumber = String(Math.random()).substring(2,12);
 
 })

@@ -43,7 +43,10 @@ export default {
     Gallery
   },
 
-  mounted() {}
+  mounted() {
+    // this.fetchFavorites()
+
+  }
 };
 </script>
 

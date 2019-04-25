@@ -40,7 +40,7 @@
     <!-- List Interface -->
     <div class="flex flex-wrap justify-between item-center content-center">
       <gallery
-        v-for="(favorite, index) in collections"
+        v-for="(favorite, index) of collections"
         :key="index"
         :name="favorite.name"
         :covers="favorite.covers"
@@ -72,23 +72,27 @@
 
 <script>
 import Gallery from '@/components/Gallery.vue'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
-  data () {
-    const returnData = {
+  data() {
+    return {
       search: '',
       loading: false
+
     }
   },
-
   components: {
     Gallery
   },
 
   computed: {
-    collections () {
-      return this.$store.state.collections
-    }
+    ...mapState([
+      'collections'
+    ])
+    // collections () {
+    //   return this.$store.state.collections
+    // }
   },
 
   beforeDestroy () {

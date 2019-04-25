@@ -57,7 +57,7 @@ export default {
 
   computed: {
     user () {
-      return this.store.state.projects.user
+      return this.$store.state.projects.user
     },
 
     projects () {

@@ -21,7 +21,8 @@
       </div>
     </div>
 
-    <routing-view @myFavorite="myFavorite"/>
+    <router-view></router-view>
+    <!-- <routing-view/> -->
   </div>
 </template>
 
@@ -48,6 +49,7 @@ export default {
     },
 
     seeProject (id) {
+      
       this.$router.push(`/${id}`)
     },
 
@@ -63,9 +65,10 @@ export default {
   },
 
   mounted () {
-    this.fetchUser().then(data => {
-      this.isLoading = false
-    })
+    this.fetchUser()
+    // .then(data => {
+    //   this.isLoading = false
+    // })
   }
 }
 </script>

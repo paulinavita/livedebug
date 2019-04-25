@@ -8,18 +8,19 @@ class TransactionController {
       to: req.transferToId
     })
     .then(success => {
-      Transaction.find({
+      Transaction.findOne({
         _id: success._id
       })
       .populate({
         path: 'from',
         populate: {
-          path: 'userId'
+          path: ('userId')
         }
       })
     })
     .then(trans => {
       res.status('201').json(trans);
+
     })
     .catch(err => {
       if (err.message) {
